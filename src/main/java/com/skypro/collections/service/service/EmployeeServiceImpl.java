@@ -9,15 +9,25 @@ import java.util.*;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
+    private String firstName;
+    private String lastName;
+    int department;
+    int salary;
+
     public EmployeeServiceImpl() {
         employees = new HashMap<>();
     }
 
     public final Map<String, Employee> employees;
 
+
     @Override
-    public Employee addEmployee(String firstName, String lastName) {
-        Employee employee = new Employee(firstName, lastName);
+    public Employee addEmployee(String firstName, String lastName, int department, int salary) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.department = department;
+        this.salary = salary;
+        Employee employee = new Employee(firstName, lastName, department, salary);
         if (employees.containsKey(employee.getFullName())) {
             throw new EmployeeAlreadyExistException();
         }
@@ -26,8 +36,8 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public Employee removeEmployee(String firstName, String lastName) {
-        Employee employee = new Employee(firstName, lastName);
+    public Employee removeEmployee(String firstName, String lastName, int department, int salary) {
+        Employee employee = new Employee(firstName, lastName, department, salary);
         if (employees.containsKey(employee.getFullName())) {
             return employees.remove(employee.getFullName());
         }
@@ -35,8 +45,8 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public Employee findEmployee(String firstName, String lastName) {
-        Employee employee = new Employee(firstName, lastName);
+    public Employee findEmployee(String firstName, String lastName, int department, int salary) {
+        Employee employee = new Employee(firstName, lastName, department, salary);
 
         if (employees.containsKey(employee.getFullName())) {
             return employees.get(employee.getFullName());
