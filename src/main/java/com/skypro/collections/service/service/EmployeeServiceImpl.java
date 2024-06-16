@@ -59,4 +59,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 
         return Collections.unmodifiableCollection(employees.values());
     }
+    @Override
+    public Employee createEmployee(String firstName, String lastName, int department, int salary) {
+        Employee employee = new Employee(firstName, lastName,department, salary);
+        return employees.put(employee.getFullName(), employee);
+    }
 }

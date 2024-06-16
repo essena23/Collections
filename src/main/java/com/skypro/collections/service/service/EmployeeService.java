@@ -12,4 +12,7 @@ public interface EmployeeService {
     Employee findEmployee(String firstName, String lastName, int department, int salary);
 
     Collection<Employee> findAll();
+
+    Employee createEmployee(String firstName, String lastName, int department, int salary);
+
 }
